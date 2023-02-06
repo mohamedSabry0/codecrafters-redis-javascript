@@ -7,11 +7,11 @@ const net = require("net");
 const server = net.createServer((connection) => {
   // Handle connection
   console.log('client connected');
-  c.on('end', () => {
+  connection.on('end', () => {
     console.log('client disconnected');
   });
-  c.write("+BONG\r\n");
-  c.pipe(c);
+  connection.write("+BONG\r\n");
+  connection.pipe(connection);
 });
 
 server.on('error', (err) => {
