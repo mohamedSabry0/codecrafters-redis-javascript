@@ -11,6 +11,7 @@ const server = net.createServer((connection) => {
     console.log('client disconnected');
   });
   console.log(connection.write(`+${"PONG"}\r\n`));
+  // when using pipe it sent +PONG\r\n*1\r\n$4\r\np
   // connection.pipe(connection);
 });
 
