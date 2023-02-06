@@ -10,8 +10,8 @@ const server = net.createServer((connection) => {
   connection.on('end', () => {
     console.log('client disconnected');
   });
-  connection.write(`+${"PONG"}\r\n`);
-  connection.pipe(connection);
+  console.log(connection.write(`+${"PONG"}\r\n`));
+  // connection.pipe(connection);
 });
 
 server.on('error', (err) => {
