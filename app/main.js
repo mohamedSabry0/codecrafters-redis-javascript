@@ -7,10 +7,17 @@ const net = require("net");
 const server = net.createServer((connection) => {
   // Handle connection
   console.log('client connected');
+  connection.setKeepAlive(true);
+  connection.setTimeout(3000);
+  connection.on('timeout', () => {
+    console.log('socket timeout');
+    connection.end();
+  });
   connection.on('end', () => {
     console.log('client disconnected');
   });
   console.log(connection.write(`+${"PONG"}\r\n`));
+
   // when using pipe it sent +PONG\r\n*1\r\n$4\r\np
   // connection.pipe(connection);
 });
