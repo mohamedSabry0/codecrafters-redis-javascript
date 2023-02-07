@@ -8,7 +8,8 @@ const server = net.createServer((connection) => {
   // Handle connection
   console.log('client connected');
   connection.setKeepAlive(true);
-  connection.setTimeout(3000);
+  console.log(connection.SO_KEEPALIVE, connection)
+  connection.setTimeout(10000);
   connection.on('timeout', () => {
     console.log('socket timeout');
     connection.end();
