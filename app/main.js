@@ -7,13 +7,13 @@ const net = require("net");
 const server = net.createServer((connection) => {
   // Handle connection
   console.log('client connected');
-  connection.setKeepAlive(true);
-  console.log(connection.SO_KEEPALIVE, connection)
-  connection.setTimeout(10000);
-  connection.on('timeout', () => {
-    console.log('socket timeout');
-    connection.end();
-  });
+  connection.setKeepAlive(true, 10000);
+  console.log(connection.SO_KEEPALIVE, connection);
+  // connection.setTimeout(10000);
+  // connection.on('timeout', () => {
+  //   console.log('socket timeout');
+  //   connection.end();
+  // });
   connection.on('end', () => {
     console.log('client disconnected');
   });
