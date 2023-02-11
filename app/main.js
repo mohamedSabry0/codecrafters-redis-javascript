@@ -12,14 +12,18 @@ const server = net.createServer((connection) => {
   });
 
   connection.on('data', (data) =>{
-    console.log(data);
+    // console.log(data);
+
+    if(data.includes('PING')){
+      console.log(connection.write(`+${"PONG"}\r\n`));
+    }
+
     if(data[0] == '*'){
       let arr = data.split('\r\n');
       console.log(arr);
-      console.log(arr.join(' '))
-    }
-    if(data[0] == '+'){
-      console.log(connection.write(`+${"PONG"}\r\n`));
+      let str = arr.join(' ');
+      console.log(str);
+      connection.write(str);
     }
     
   })
