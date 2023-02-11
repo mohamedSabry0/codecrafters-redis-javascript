@@ -18,8 +18,8 @@ const server = net.createServer((connection) => {
     if(data.includes('PING')){
       console.log(connection.write(`+${"PONG"}\r\n`));
     }
-    
-    if(data[0] == '*'){
+
+    else if(data[0] == '*'){
       let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
       console.log(arr);
       let str = arr.join(' ');
