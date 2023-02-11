@@ -17,7 +17,7 @@ const server = net.createServer((connection) => {
     // if(data.includes('PING')){
     //   console.log(connection.write(`+${"PONG"}\r\n`));
     // }
-
+    data = data.toString();
     if(data[0] == '*'){
       let arr = data.split('\r\n');
       console.log(arr);
