@@ -20,7 +20,8 @@ const server = net.createServer((connection) => {
     data = data.toString();
     if(data[0] == '*'){
       let arr = data.split('\r\n').filter(str =>{
-        return str[0].test(/\$\*\:\+/);
+        console.log(str, str.test(/\$\*\:\+/));
+        return str.test(/\$\*\:\+/);
       });
       console.log(arr);
       let str = arr.join(' ');
