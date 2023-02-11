@@ -15,7 +15,7 @@ const server = net.createServer((connection) => {
     console.log(data);
 
     data = data.toString();
-    if(data.includes('PING')){
+    if(data.includes('ping')){
       console.log(connection.write(`+${"PONG"}\r\n`));
     }
 
