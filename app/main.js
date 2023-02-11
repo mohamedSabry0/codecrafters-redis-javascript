@@ -14,10 +14,11 @@ const server = net.createServer((connection) => {
   connection.on('data', (data) =>{
     console.log(data);
 
-    // if(data.includes('PING')){
-    //   console.log(connection.write(`+${"PONG"}\r\n`));
-    // }
     data = data.toString();
+    if(data.includes('PING')){
+      console.log(connection.write(`+${"PONG"}\r\n`));
+    }
+    
     if(data[0] == '*'){
       let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
       console.log(arr);
