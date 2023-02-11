@@ -17,7 +17,9 @@ const server = net.createServer((connection) => {
       console.log(arr);
       console.log(arr.join(' '))
     }
-    // console.log(connection.write(`+${"PONG"}\r\n`));
+    if(data[0] == '+'){
+      console.log(connection.write(`+${"PONG"}\r\n`));
+    }
     
   })
 
