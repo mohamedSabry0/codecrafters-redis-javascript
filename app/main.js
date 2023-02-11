@@ -10,9 +10,14 @@ const server = net.createServer((connection) => {
   connection.on('end', () => {
     console.log('client disconnected');
   });
-  
+
   connection.on('data', (data) =>{
-    console.log(connection.write(`+${"PONG"}\r\n`));
+    if(data[0] == '*'){
+      let arr = data.split('\r\n');
+      console.log(arr);
+      console.log(arr.join(' '))
+    }
+    // console.log(connection.write(`+${"PONG"}\r\n`));
     
   })
 
