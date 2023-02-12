@@ -29,7 +29,7 @@ const server = net.createServer((connection) => {
         connection.write(str);
         
       }else if(command == 'ping'){
-        connection.write(`+${"PONG"}\\r\\n`)
+        connection.write(`+${"PONG"}\r\n`)
       }
       console.log(arr);
     }
