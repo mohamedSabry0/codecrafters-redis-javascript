@@ -20,7 +20,7 @@ const server = net.createServer((connection) => {
     // }
 
     if(data[0] == '*'){
-      let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| |echo].*)/.test(str));
+      let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
       let command = arr.shift();
       if(command == 'echo'){
         let str = arr.join(' ');
