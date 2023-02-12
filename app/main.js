@@ -23,13 +23,13 @@ const server = net.createServer((connection) => {
       let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
       let command = arr.shift();
       if(command == 'echo'){
-        arr = arr.map(str => `$${str.length}\r\n${str}\r\n`);
-        let str = `*${arr.length}\r\n${arr.join('')}`;
+        arr = arr.map(str => `$${str.length}\\r\\n${str}\\r\\n`);
+        let str = `*${arr.length}\\r\\n${arr.join('')}`;
         console.log(str);
         connection.write(str);
         
       }else if(command == 'ping'){
-        connection.write(`+${"PONG"}\r\n`)
+        connection.write(`+${"PONG"}\\r\\n`)
       }
       console.log(arr);
     }
