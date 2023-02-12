@@ -12,9 +12,9 @@ const server = net.createServer((connection) => {
   });
 
   connection.on('data', (data) =>{
-    console.log(data);
-
+    
     data = data.toString();
+    console.log(data);
     // if(data.includes('ping')){
     //   console.log(connection.write(`+${"PONG"}\r\n`));
     // }
@@ -23,8 +23,8 @@ const server = net.createServer((connection) => {
       let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
       let command = arr.shift();
       if(command == 'echo'){
-        arr = arr.map(str => `$${str.length}\\r\\n${str}\\r\\n`);
-        let str = `*${arr.length}\\r\\n${arr.join('')}`;
+        arr = arr.map(str => `$${str.length}\r\n${str}\r\n`);
+        let str = `${arr.join('')}`;
         console.log(str);
         connection.write(str);
         
