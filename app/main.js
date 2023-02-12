@@ -15,16 +15,22 @@ const server = net.createServer((connection) => {
     console.log(data);
 
     data = data.toString();
-    if(data.includes('ping')){
-      console.log(connection.write(`+${"PONG"}\r\n`));
-    }
+    // if(data.includes('ping')){
+    //   console.log(connection.write(`+${"PONG"}\r\n`));
+    // }
 
-    else if(data[0] == '*'){
-      let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| ].*)/.test(str));
+    if(data[0] == '*'){
+      let arr = data.split('\r\n').filter(str => /(^[^\$|\*|\:|\+| |echo].*)/.test(str));
+      let command = arr.shift();
+      if(command == 'echo'){
+        let str = arr.join(' ');
+        console.log(str);
+        connection.write(str);
+        
+      }else if(command == 'ping'){
+        connection.write(`+${"PONG"}\r\n`)
+      }
       console.log(arr);
-      let str = arr.join(' ');
-      console.log(str);
-      connection.write(str);
     }
     
   })
