@@ -32,7 +32,7 @@ const server = net.createServer((connection) => {
       }else if(command == 'ping'){
         connection.write(`+${"PONG"}\r\n`)
       }
-      
+
       else if(command == 'get'){
         if(dataStore[arr[0]]){
           let val = dataStore[arr[0]];
@@ -42,13 +42,14 @@ const server = net.createServer((connection) => {
             connection.write(`-WRONGTYPE Operation against a key holding the wrong kind of value`)
           }
         }else{
-          connection.write(`$3\r\nnil\r\n`)
+          console.log('nil reply')
+          connection.write(`$-1\r\n`)
         }
       }
 
       else if(command == 'set'){
         dataStore[arr[0]] = arr[1];
-        if(dataStore[arr[0]]){connection.write(`$2\r\nok\r\n`);}
+        if(dataStore[arr[0]]){connection.write(`+OK\r\n`);}
       }
       console.log(arr);
     }
